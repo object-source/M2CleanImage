@@ -55,3 +55,4 @@ WORKDIR /tmp
 
 RUN php --version
 RUN composer --version
+RUN composer global require hirak/prestissimo
