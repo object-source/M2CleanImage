@@ -19,6 +19,11 @@ RUN apt-get update && \
     libgd2-xpm-dev && \
     rm -r /var/lib/apt/lists/*
 
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash && \
+    apt-get install -y nodejs build-essential
+
+RUN npm install -g grunt-cli
+
 # PHP Extensions (curl, mbstring, hash, simplexml, xml, json, iconv are already installed in php image)
 RUN docker-php-ext-configure \
   gd --with-jpeg-dir=/usr/include/
@@ -52,6 +57,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Goto temporary directory.
 WORKDIR /tmp
+
 
 RUN php --version
 RUN composer --version
